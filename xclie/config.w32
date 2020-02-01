@@ -1,0 +1,12 @@
+// vim:ft=javascript
+
+ARG_ENABLE('xclie', 'PHP eXtendable CLI Embeded', 'no');
+
+var PHP_XCLIE_PGO = false;
+
+if (PHP_XCLIE != "no") {
+	SAPI('xclie', 'php_xclie.c', 'php' + PHP_VERSION + 'xclie.lib',
+		'/DZEND_ENABLE_STATIC_TSRMLS_CACHE=1');
+		
+	PHP_INSTALL_HEADERS("sapi/xclie", "php_xclie.h");
+}
