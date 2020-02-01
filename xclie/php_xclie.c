@@ -654,7 +654,9 @@ int xclie_load_entry_file(
 				xclie_string_append(buffer, g_exec_args->entry_script);
 			}
 
-			if (!xclie_file_exists(xclie_c_str(buffer))) {
+			if (buffer->size <= 0 || 
+				!xclie_file_exists(xclie_c_str(buffer))) 
+			{
 				return -1;
 			}
 			else {
