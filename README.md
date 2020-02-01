@@ -13,74 +13,6 @@ A library for writing your own php interpreter, clearly separated
 (at the source code level, simply, hard-coded) from the php installation 
 that works with Apache or nginx.
 
-# Roadmap
-
-This library is focused on ensuring `Isolated Execution Evironment` for PHP 7. and its major feature.
-These are not a fixed plan. just a plan yet, read these lightly.
-
-## PHP extension on `XCLIE` side.
-I think this would be nice. the major reason for giving up PHP module development, who feel, is the very complex dependencies and access macros. so, in this idea, making `XCLIE` as extension bridge which has no much dependency, access macros and intuitive interface.
-
-**How do new people developing PHP modules know about shortened macros?
-
-They just think, "What is this?" And, would be falling into macro hell.
-
-My plan is for that, for example, in pseudo code,
-```
-X_FUNCTION(...) /* for declaring plain function. */
-class my_function : public xclie::php_function {
-	XCLIE_GENERATED_SPEC();
-	...
-	X_FUNC_SPEC(ret_type, const type1&, ...)
-	void func_plain(ret_type& retVal, const type1& in1 ...) {
-		...
-	}
-	...
-};
-
-X_CLASS() /* for declaring class. */
-class my_class : public xclie::php_class {
-	XCLIE_GENERATED_SPEC();
-	...
-	X_PROPERTY(private)
-	int value;
-	...
-	X_FUNC_SPEC(ret_type, const type1&, ...)
-	void func1(ret_type& retVal, const type1& in1 ...) {
-		...
-	}
-	...
-	X_FUNC_SPEC(ret_type, const type1&, ...)
-	static void static_func2(ret_type& retVal, const type1& in1 ...) {
-		...
-	}
-	...
-};
-
-...
-exec.postinit = [](xclie_exec* exec) {
-	auto* context = exec->context;
-	
-	context->register_function(my_function::static_spec());
-	context->register_class(my_class::static_spec());
-	...
-};
-```
-
-## Extending Server-software?
-`php-xclie-cgi` or `php-xclie-fpm` something for making `IEEed` environment. 
-As an aside, I think this can be an innovation in PHP framework designs.
-
-My plan is for that, for example, Apache configuration,
-```
-<VirtualHost *:80>
-	php-xclie cgi /path/to/your/interpreter
-	... OR ...
-	php-xclie fpm /path/to/your/interpreter
-</VirtualHost>
-```
-And, `php-xclie-cgi`(or `-fpm`) will pass `ALL` requests to custom interpreter with environment variables.
-
 # Supported Platforms
 
 1. Linux and almost unix systems. (except iOS, android)
@@ -275,3 +207,71 @@ And, zip them all.
 2. Linux system.
 
 ... Writing...
+
+# Roadmap
+
+This library is focused on ensuring `Isolated Execution Evironment` for PHP 7. and its major feature.
+These are not a fixed plan. just a plan yet, read these lightly.
+
+## PHP extension on `XCLIE` side.
+I think this would be nice. the major reason for giving up PHP module development, who feel, is the very complex dependencies and access macros. so, in this idea, making `XCLIE` as extension bridge which has no much dependency, access macros and intuitive interface.
+
+**How do new people developing PHP modules know about shortened macros?
+
+They just think, "What is this?" And, would be falling into macro hell.
+
+My plan is for that, for example, in pseudo code,
+```
+X_FUNCTION(...) /* for declaring plain function. */
+class my_function : public xclie::php_function {
+	XCLIE_GENERATED_SPEC();
+	...
+	X_FUNC_SPEC(ret_type, const type1&, ...)
+	void func_plain(ret_type& retVal, const type1& in1 ...) {
+		...
+	}
+	...
+};
+
+X_CLASS() /* for declaring class. */
+class my_class : public xclie::php_class {
+	XCLIE_GENERATED_SPEC();
+	...
+	X_PROPERTY(private)
+	int value;
+	...
+	X_FUNC_SPEC(ret_type, const type1&, ...)
+	void func1(ret_type& retVal, const type1& in1 ...) {
+		...
+	}
+	...
+	X_FUNC_SPEC(ret_type, const type1&, ...)
+	static void static_func2(ret_type& retVal, const type1& in1 ...) {
+		...
+	}
+	...
+};
+
+...
+exec.postinit = [](xclie_exec* exec) {
+	auto* context = exec->context;
+	
+	context->register_function(my_function::static_spec());
+	context->register_class(my_class::static_spec());
+	...
+};
+```
+
+## Extending Server-software?
+`php-xclie-cgi` or `php-xclie-fpm` something for making `IEEed` environment. 
+As an aside, I think this can be an innovation in PHP framework designs.
+
+My plan is for that, for example, Apache configuration,
+```
+<VirtualHost *:80>
+	php-xclie cgi /path/to/your/interpreter
+	... OR ...
+	php-xclie fpm /path/to/your/interpreter
+</VirtualHost>
+```
+And, `php-xclie-cgi`(or `-fpm`) will pass `ALL` requests to custom interpreter with environment variables.
