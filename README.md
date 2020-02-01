@@ -188,3 +188,22 @@ struct xclie_exec {
 };
 ```
 
+# Deploy your own PHP interpreter
+
+1. Windows system.
+
+Copy `php7ts.dll` file into your `exe` directory.
+And, zip them all.
+
+```
+/include/autoloader.php
+/include/... much php files ...
+/your_own_interpreter.exe
+/php7ts.dll
+/main.php
+....
+```
+
+2. Linux system.
+
+... Writing...
