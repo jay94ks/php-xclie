@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <None Include="config.m4">
+      <Filter>build</Filter>
+    </None>
+    <None Include="config.w32">
+      <Filter>build</Filter>
+    </None>
+    <None Include="CREDITS">
+      <Filter>build</Filter>
+    </None>
+    <None Include="EXPERIMENTAL">
+      <Filter>build</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="build">
+      <UniqueIdentifier>{bbfbe820-0b5b-4444-8f30-323c4128ec20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sources">
+      <UniqueIdentifier>{f9d116d0-ae89-4575-837d-c062294f5413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers">
+      <UniqueIdentifier>{345f261e-7ba1-48fc-afd5-6a475ae9da59}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers %28private%29">
+      <UniqueIdentifier>{45a174c4-feb5-4354-bad8-61bd55410ddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="headers\bits">
+      <UniqueIdentifier>{a9ab1887-b66d-4af8-a902-be7fa2c66202}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="xclie.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="xclie_string.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="xclie_args.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="xclie_event.c">
+      <Filter>sources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="xclie.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="xclie_string.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="bits\xclie_status.h">
+      <Filter>headers\bits</Filter>
+    </ClInclude>
+    <ClInclude Include="bits\xclie_gc.h">
+      <Filter>headers\bits</Filter>
+    </ClInclude>
+    <ClInclude Include="xclie_args.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="bits\xclie_exit_code.h">
+      <Filter>headers\bits</Filter>
+    </ClInclude>
+    <ClInclude Include="xclie_event.h">
+      <Filter>headers</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

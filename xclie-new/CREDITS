@@ -1,0 +1,54 @@
+Xclie
+Jaehoon Joe.
+
+this module is based on php-embed SAPI module.
+
+---
+2020-02-03 00:18
+
+Redesigned the whole to add a new `backend` mode.
+
+`as_backend` mode runs php code in another thread,
+but uses the xclie_event functions to allow php code
+and C / C ++ to communicate with each other.
+
+currently it implemented `string` mode.
+but, it should support `binary` mode also.
+
+the `event` APIs are:
+
+1. xclie_event_issue(event_type, event_data)
+2. xclie_event_issue(event_data)
+
+	issue an event to php/native side with type and data string.
+	if fail, returns zero (false in php), succeed, return one (true in php)
+
+	--
+
+	int32_t xclie_event_issue(const char* type, const char* data).
+
+	--
+
+	* Either type or data must not be an empty string.
+
+3. xclie_event_wait(timeout)
+3. xclie_event_wait()
+
+	Waits for an event for the specified timeout (ms).
+	If 0 is specified, it returns without waiting. If -1 is specified,
+	infinite wait is performed.
+
+	And, this function cannot wait above the PHP_INT_MAX (INT32_MAX) value.
+	Except for infinite waiting.
+
+	--
+
+	int32_t xclie_event_wait(xclie_event* out_event, int32_t timeout)
+
+	--
+		
+	return value:
+		array ( type => event-type, data => event-data )
+
+	NOTE: `Key` is set only if an empty string is not specified.
+			
