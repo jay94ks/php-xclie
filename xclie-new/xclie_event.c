@@ -264,6 +264,8 @@ int32_t xclie_event_wait_r(int32_t is_issue, xclie_event* out_event, int32_t tim
 					((clock() - last_clock) / (CLOCKS_PER_SEC * 1.0f))
 					* 1000.0f);
 
+				last_clock = clock();
+
 				if ((timeout = timeout - time_slice) < 0) {
 					timeout = 0;
 				}
